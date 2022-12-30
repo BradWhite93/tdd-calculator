@@ -4,7 +4,7 @@
     {
         public int Add(string numbers)
         {
-            var listOfNumbers = numbers.Split(",", StringSplitOptions.RemoveEmptyEntries);
+            var listOfNumbers = numbers.Split(new [] {",", "\n"}, StringSplitOptions.RemoveEmptyEntries);
             return listOfNumbers.Sum(int.Parse);
         }
     }
