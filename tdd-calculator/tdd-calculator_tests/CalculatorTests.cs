@@ -8,7 +8,7 @@ public class CalculatorTests
     public void GivenCalculatorWhenEmptyStringReturnZero()
     {
         var calculator = new StringCalculator();
-        var result = calculator.Add("");
+        var result = StringCalculator.Add("");
         Assert.True(result == 0);
     }
 
@@ -16,7 +16,7 @@ public class CalculatorTests
     public void GivenCalculatorWhenASingleNumberThenReturnInput()
     {
         var calculator = new StringCalculator();
-        var result = calculator.Add("1");
+        var result = StringCalculator.Add("1");
         Assert.True(result == 1);
     }
 
@@ -24,7 +24,7 @@ public class CalculatorTests
     public void GivenCalculatorWhenTwoValidNumbersThenReturnTheSumOfTheseTogether()
     {
         var calculator = new StringCalculator();
-        var result = calculator.Add("1,2");
+        var result = StringCalculator.Add("1,2");
         Assert.True(result == 3);
     }
 
@@ -32,7 +32,7 @@ public class CalculatorTests
     public void GivenCalculatorWhenMoreThanTwoValidNumbersThenReturnTheSumOfAllOfTheseTogether()
     {
         var calculator = new StringCalculator();
-        var result = calculator.Add("1,2,3,4,5");
+        var result = StringCalculator.Add("1,2,3,4,5");
         Assert.True(result == 15);
     }
 
@@ -41,7 +41,7 @@ public class CalculatorTests
     public void GivenCalculatorWhenNewLineIsUsedInsteadOfCommaThenAddAllOfTheseTogether()
     {
         var calculator = new StringCalculator();
-        var result = calculator.Add("1\n2,3");
+        var result = StringCalculator.Add("1\n2,3");
         Assert.True(result == 6);
     }
 
@@ -49,7 +49,7 @@ public class CalculatorTests
     public void GivenCalculatorWhenUserEnteredDelimmitedUseItToSplitTheStringAndAddAllOfTheseTogether()
     {
         var calculator = new StringCalculator();
-        var result = calculator.Add("//;\n1;2");
+        var result = StringCalculator.Add("//;\n1;2");
         Assert.True(result == 3);
     }
 }

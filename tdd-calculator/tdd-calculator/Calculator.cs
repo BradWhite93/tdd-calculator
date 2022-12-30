@@ -2,13 +2,20 @@
 {
     public class StringCalculator
     {
-        public int Add(string numbers)
+        public static int Add(string numbers)
         {
-            var indexOfDelimmiter = numbers.IndexOf("//", StringComparison.Ordinal);
-            var delimmiter = numbers.Substring(indexOfDelimmiter + 2, 1);
-            var numbersWithDelimmiterRemoved = numbers.Remove(indexOfDelimmiter, numbers.IndexOf(delimmiter, StringComparison.Ordinal));
-            var listOfNumbers = numbersWithDelimmiterRemoved.Split(new [] {",", "\n", delimmiter}, StringSplitOptions.RemoveEmptyEntries);
+            var delimiter  = ",";
+            var indexOfDelimiter  = numbers.IndexOf("//", StringComparison.Ordinal);
+            if (indexOfDelimiter != -1)
+            {
+                delimiter = numbers.Substring(indexOfDelimiter + 2, 1);
+                numbers = numbers.Remove(indexOfDelimiter, numbers.IndexOf(delimiter, StringComparison.Ordinal));
+            }
+            
+            var listOfNumbers = numbers.Split(new [] {",", "\n", delimiter}, StringSplitOptions.RemoveEmptyEntries);
             return listOfNumbers.Sum(int.Parse);
         }
+
+
     }
 }
