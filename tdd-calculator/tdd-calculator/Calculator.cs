@@ -1,6 +1,5 @@
 ﻿namespace tdd_calculator
 {
-
     public class StringCalculator
     {
         public int Add(string numbers)

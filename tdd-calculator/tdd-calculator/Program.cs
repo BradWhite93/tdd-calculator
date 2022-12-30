@@ -2,9 +2,6 @@
 
 using tdd_calculator;
 
-Console.WriteLine("Hello, World!");
 var calculator = new StringCalculator();
-
-
 Console.WriteLine(calculator.Add("1,2"));
 Console.ReadLine();

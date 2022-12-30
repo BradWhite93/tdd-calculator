@@ -1,6 +1,6 @@
 namespace tdd_calculator_tests
 {
-    public class UnitTest1
+    public class CalculatorTests
     {
         [Fact]
         public void GivenCalculatorWhenEmptyStringReturnZero()
@@ -24,6 +24,14 @@ namespace tdd_calculator_tests
             var calculator = new tdd_calculator.StringCalculator();
             var result = calculator.Add("1,2");
             Assert.True(result == 3);
+        }
+
+        [Fact]
+        public void GivenCalculatorWhenMoreThanTwoValidNumbersThenReturnTheSumOfAllOfThese()
+        {
+            var calculator = new tdd_calculator.StringCalculator();
+            var result = calculator.Add("1,2,3,4,5");
+            Assert.True(result == 15);
         }
     }
 }
