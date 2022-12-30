@@ -44,4 +44,19 @@ public class CalculatorTests
         var ex = Assert.Throws<Exception>(() => calculator.Add(input));
         Assert.Equal($"Negatives not allowed {expectedOutput}", ex.Message);
     }
+
+    [Theory]
+    [InlineData(1)]
+    [InlineData(0)]
+    [InlineData(4)]
+    public void GivenCalculator_WhenGetCalledCountIsInvoked_ThenReturnHowManyTimesAddWasCalled(int numberOfInvokations)
+    {
+        var calculator = new StringCalculator();
+        for (var i = 1; i <= numberOfInvokations; i++)
+        {
+            calculator.Add("1");
+        }
+        var result = calculator.GetCalledCount();
+        Assert.True(result == numberOfInvokations);
+    }
 }

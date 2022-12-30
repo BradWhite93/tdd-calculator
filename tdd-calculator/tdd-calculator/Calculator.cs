@@ -4,6 +4,8 @@ namespace tdd_calculator
 {
     public class StringCalculator
     {
+        private int InvokationCount { get; set; }
+
         public virtual int Add(string numbers)
         {
             var delimiters = new List<char> { ',', '\n' };
@@ -20,7 +22,14 @@ namespace tdd_calculator
             }
 
             var listOfNumbers = numbers.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+            InvokationCount++;
             return listOfNumbers.Sum(int.Parse);
         }
+
+        public int GetCalledCount()
+        {
+            return InvokationCount;
+        }
+
     }
 }
