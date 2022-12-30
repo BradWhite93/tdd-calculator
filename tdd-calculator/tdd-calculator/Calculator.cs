@@ -5,7 +5,7 @@
         public virtual int Add(string numbers)
         {
             var delimiters = new List<char> { ',', '\n' };
-            
+
             if (numbers.Contains("//"))
             {
                 var customDelimiter = numbers.Split("//").Last().ToCharArray()[0];
@@ -16,7 +16,5 @@
             var listOfNumbers = numbers.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
             return listOfNumbers.Sum(int.Parse);
         }
-
-
     }
 }
