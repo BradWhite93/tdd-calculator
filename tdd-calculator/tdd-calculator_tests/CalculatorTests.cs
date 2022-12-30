@@ -4,52 +4,24 @@ namespace tdd_calculator_tests;
 
 public class CalculatorTests
 {
-    [Fact]
-    public void GivenCalculatorWhenEmptyStringReturnZero()
+    [Theory]
+    [InlineData("", 0)]
+    [InlineData("1",1)]
+    [InlineData("1,2",3)]
+    [InlineData("1,2,3,4,5", 15)]
+    [InlineData("1\n2,3", 6)]
+    public void GivenCalculator_WhenInputsProvidedWithoutCustomDelimmiter_InputsAreAddedTogether(string input, int expectedResult)
     {
         var calculator = new StringCalculator();
-        var result = StringCalculator.Add("");
-        Assert.True(result == 0);
+        var result = calculator.Add(input);
+        Assert.True(result == expectedResult);
     }
 
     [Fact]
-    public void GivenCalculatorWhenASingleNumberThenReturnInput()
+    public void GivenCalculator_WhenInputsProvidedWithCustomDelimmiter_InputsAreAddedTogether()
     {
         var calculator = new StringCalculator();
-        var result = StringCalculator.Add("1");
-        Assert.True(result == 1);
-    }
-
-    [Fact]
-    public void GivenCalculatorWhenTwoValidNumbersThenReturnTheSumOfTheseTogether()
-    {
-        var calculator = new StringCalculator();
-        var result = StringCalculator.Add("1,2");
-        Assert.True(result == 3);
-    }
-
-    [Fact]
-    public void GivenCalculatorWhenMoreThanTwoValidNumbersThenReturnTheSumOfAllOfTheseTogether()
-    {
-        var calculator = new StringCalculator();
-        var result = StringCalculator.Add("1,2,3,4,5");
-        Assert.True(result == 15);
-    }
-
-
-    [Fact]
-    public void GivenCalculatorWhenNewLineIsUsedInsteadOfCommaThenAddAllOfTheseTogether()
-    {
-        var calculator = new StringCalculator();
-        var result = StringCalculator.Add("1\n2,3");
-        Assert.True(result == 6);
-    }
-
-    [Fact]
-    public void GivenCalculatorWhenUserEnteredDelimmitedUseItToSplitTheStringAndAddAllOfTheseTogether()
-    {
-        var calculator = new StringCalculator();
-        var result = StringCalculator.Add("//;\n1;2");
+        var result = calculator.Add("//;\n1;2");
         Assert.True(result == 3);
     }
 }

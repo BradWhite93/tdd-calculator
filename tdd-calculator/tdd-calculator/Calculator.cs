@@ -2,7 +2,7 @@
 {
     public class StringCalculator
     {
-        public static int Add(string numbers)
+        public int Add(string numbers)
         {
             var delimiter  = ",";
             var indexOfDelimiter  = numbers.IndexOf("//", StringComparison.Ordinal);
