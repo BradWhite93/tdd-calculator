@@ -21,7 +21,7 @@ public class CalculatorTests
     }
 
     [Fact]
-    public void GivenCalculatorWhenTwoValidNumbersThenReturnTheSumOfThese()
+    public void GivenCalculatorWhenTwoValidNumbersThenReturnTheSumOfTheseTogether()
     {
         var calculator = new StringCalculator();
         var result = calculator.Add("1,2");
@@ -29,7 +29,7 @@ public class CalculatorTests
     }
 
     [Fact]
-    public void GivenCalculatorWhenMoreThanTwoValidNumbersThenReturnTheSumOfAllOfThese()
+    public void GivenCalculatorWhenMoreThanTwoValidNumbersThenReturnTheSumOfAllOfTheseTogether()
     {
         var calculator = new StringCalculator();
         var result = calculator.Add("1,2,3,4,5");
@@ -38,10 +38,18 @@ public class CalculatorTests
 
 
     [Fact]
-    public void GivenCalculatorWhenNewLineIsUsedInsteadOfCommaThenAddAllOfThese()
+    public void GivenCalculatorWhenNewLineIsUsedInsteadOfCommaThenAddAllOfTheseTogether()
     {
         var calculator = new StringCalculator();
         var result = calculator.Add("1\n2,3");
         Assert.True(result == 6);
+    }
+
+    [Fact]
+    public void GivenCalculatorWhenUserEnteredDelimmitedUseItToSplitTheStringAndAddAllOfTheseTogether()
+    {
+        var calculator = new StringCalculator();
+        var result = calculator.Add("//;\n1;2");
+        Assert.True(result == 3);
     }
 }
