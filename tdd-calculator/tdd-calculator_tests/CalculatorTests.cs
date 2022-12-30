@@ -25,12 +25,23 @@ public class CalculatorTests
         Assert.True(result == 3);
     }
 
-    [Fact]
-    public void GivenCalculator_WhenNegativeInputIsProvided_ExceptionIsThrown()
+    [Theory]
+    [InlineData("-1")]
+    [InlineData("-1,-2,-3")]
+    public void GivenCalculator_WhenNegativeInputIsProvided_ExceptionIsThrown(string input)
     {
         var calculator = new StringCalculator();
-        const string negativeNumbers = "-1";
-        var ex = Assert.Throws<Exception>(() => calculator.Add(negativeNumbers));
-        Assert.Equal($"Negatives not allowed {negativeNumbers}", ex.Message);
+        var ex = Assert.Throws<Exception>(() => calculator.Add(input));
+        Assert.Equal($"Negatives not allowed {input}", ex.Message);
+    }
+
+    [Fact]
+    public void GivenCalculator_WhenNegativeInputIsProvidedWithPositiveNumbers_ExceptionIsThrownOnlyWithNegativeNumbers()
+    {
+        var calculator = new StringCalculator();
+        const string input = "-1,2,-4";
+        const string expectedOutput = "-1,-4";
+        var ex = Assert.Throws<Exception>(() => calculator.Add(input));
+        Assert.Equal($"Negatives not allowed {expectedOutput}", ex.Message);
     }
 }

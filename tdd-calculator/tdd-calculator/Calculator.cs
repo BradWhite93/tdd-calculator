@@ -9,7 +9,7 @@ namespace tdd_calculator
             var delimiters = new List<char> { ',', '\n' };
             if (numbers.Contains("-"))
             {
-                var negativeValue = Regex.Match(numbers, @"-?\d+").Value;
+                var negativeValue = string.Join(",", Regex.Matches(numbers, @"-\d+"));
                 throw new Exception($"Negatives not allowed {negativeValue}");
             }
             if (numbers.Contains("//"))
