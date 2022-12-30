@@ -2,17 +2,22 @@
 {
     public class StringCalculator
     {
-        public int Add(string numbers)
+        public virtual int Add(string numbers)
         {
-            var delimiter  = ",";
-            var indexOfDelimiter  = numbers.IndexOf("//", StringComparison.Ordinal);
-            if (indexOfDelimiter != -1)
+            var delimiters = new List<char> { ',', '\n' };
+            var customDelimiter = '\0';
+            if (numbers.Contains("//"))
             {
-                delimiter = numbers.Substring(indexOfDelimiter + 2, 1);
-                numbers = numbers.Remove(indexOfDelimiter, numbers.IndexOf(delimiter, StringComparison.Ordinal));
+                customDelimiter = numbers.Split("//").Last().ToCharArray()[0];
+                numbers = numbers.Remove(0, numbers.IndexOf(customDelimiter, StringComparison.Ordinal));
+            }
+
+            if (customDelimiter != '\0')
+            {
+                delimiters.Add(customDelimiter);
             }
             
-            var listOfNumbers = numbers.Split(new [] {",", "\n", delimiter}, StringSplitOptions.RemoveEmptyEntries);
+            var listOfNumbers = numbers.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
             return listOfNumbers.Sum(int.Parse);
         }
 
